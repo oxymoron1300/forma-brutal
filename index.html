@@ -615,7 +615,7 @@ function toggleDark() {
   document.body.classList.toggle('dark');
   const btn = document.getElementById('dark-toggle');
   btn.textContent = document.body.classList.contains('dark') ? 'Modo Claro' : 'Modo Escuro';
-  localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+  try { localStorage.setItem('darkMode', document.body.classList.contains('dark')); } catch(e) {}
 }
 
 // Init
@@ -651,10 +651,10 @@ document.addEventListener('DOMContentLoaded', () => {
     <button id="dark-toggle" onclick="toggleDark()">Modo Escuro</button>
   `;
   header.appendChild(sportNav);
-  if (localStorage.getItem('darkMode') === 'true') {
+  try { if (localStorage.getItem('darkMode') === 'true') {
     document.body.classList.add('dark');
     document.getElementById('dark-toggle').textContent = 'Modo Claro';
-  }
+  } } catch(e) {}
   updateTimestamp();
   renderNav();
   showSection('world');
